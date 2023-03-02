@@ -15,7 +15,7 @@ function Header({presupuesto,setPresupuesto,setIsValidPresupuesto,isValidPresupu
             />
         :(
             <ControlPresupuesto
-            presupuesto={presupuesto}
+              presupuesto={presupuesto}
             />
         )
       }
