@@ -7,7 +7,7 @@ import './index.css'
 
 
 function App() {
-  const [presupuesto,setPresupuesto]=useState(0)
+  const [presupuesto,setPresupuesto]=useState('')
   const [isValidPresupuesto,setIsValidPresupuesto]=useState(false)
   const [modal,setModal]=useState(false)
   const [animarModal,setAnimarModal]=useState(false)

@@ -6,7 +6,7 @@ import Mensaje from './Mensaje';
 function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
 
     const [nombre,setNombre]=useState('');
-    const [cantidad,setCantidad]=useState(0)
+    const [cantidad,setCantidad]=useState('')
     const [categoria,setCategoria]=useState('')
     const [mensaje,setMensaje]=useState('')
 
@@ -19,6 +19,7 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
+
         if([nombre,cantidad,categoria].includes('')){
             setMensaje('Todos los campos son obligatorios')
 
@@ -27,9 +28,13 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
             }, 2000);
             return
         }
+
         const unique_id = uuid();
         const small_id = unique_id.slice(0,10)
+        const fecha= Date.now()
+
         guardarGasto({
+            fecha: fecha,
             id:small_id,
             nombre:nombre,
             cantidad:cantidad,
@@ -37,7 +42,7 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
         })
         
         setNombre('');
-        setCantidad(0)
+        setCantidad('')
         setCategoria('')
         closeModal()
     }
@@ -68,6 +73,7 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
                         onChange={(e)=>setNombre(e.target.value)}
                     />
                 </div>
+                
                 <div className='campo'>
                     <label htmlFor="cantidad">Cantidad</label>
                     <input 
@@ -78,6 +84,7 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
                         onChange={(e)=>setCantidad(Number(e.target.value))}
                     />
                 </div>
+
                 <div className='campo'>
                     <label htmlFor="categoria">Categoria</label>
 
@@ -96,11 +103,12 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
                         <option value="Suscripciones">Suscripciones</option>
                     </select>
 
-                    <input
-                        value="Añadir gasto" 
-                        type="submit" 
-                    />
                 </div>
+
+                <input
+                    value="Añadir gasto" 
+                    type="submit" 
+                />
             </form>
         </div>
     )
