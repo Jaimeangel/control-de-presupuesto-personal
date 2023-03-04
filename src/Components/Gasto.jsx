@@ -33,7 +33,7 @@ function Gasto({gasto}) {
                 <p className="fecha-gasto">Agregado el:<span>{newDate}</span></p>
             </div>
         </div>
-        <p className='cantidad-gasto'>{cantidad}</p>
+        <p className='cantidad-gasto'>$ {cantidad}</p>
     </div>
   )
 }

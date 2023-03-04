@@ -1,7 +1,7 @@
 import NuevoPresupuesto from './NuevoPresupuesto';
 import ControlPresupuesto from './ControlPresupuesto';
 
-function Header({presupuesto,setPresupuesto,setIsValidPresupuesto,isValidPresupuesto}) {
+function Header({presupuesto,setPresupuesto,setIsValidPresupuesto,isValidPresupuesto,gastos}) {
   return (
     <header>
       <h1>Planificador de gastos</h1>
@@ -16,6 +16,7 @@ function Header({presupuesto,setPresupuesto,setIsValidPresupuesto,isValidPresupu
         :(
             <ControlPresupuesto
               presupuesto={presupuesto}
+              gastos={gastos}
             />
         )
       }
