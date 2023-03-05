@@ -27,7 +27,7 @@ const listIcons={
     Suscripciones:iconoSuscripciones,
 }
 
-function Gasto({gasto,setGastoEditar}) {
+function Gasto({gasto,setGastoEditar,eliminarGasto}) {
     const {categoria,id,nombre,cantidad,fecha}=gasto;
     const newDate=formatFecha(fecha)
     
@@ -43,7 +43,7 @@ function Gasto({gasto,setGastoEditar}) {
         <TrailingActions>
           <SwipeAction
             destructive={true}
-            onClick={() => console.info('swipe action triggered')}
+            onClick={() => eliminarGasto(id)}
           >
             BORRAR
           </SwipeAction>

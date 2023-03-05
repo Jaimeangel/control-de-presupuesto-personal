@@ -50,33 +50,24 @@ function Modal({
             }, 2000);
             return
         }
-
-        let idGasto;
-        const unique_id = uuid();
-        const small_id = unique_id.slice(0,10)
         const fecha= Date.now()
-
         if(idEditar){
-            idGasto=idEditar
             guardarGastoEditado({
                 fecha: fecha,
-                id:idGasto,
+                id:idEditar,
                 nombre:nombre,
                 cantidad:cantidad,
                 categoria:categoria
             })
         }else{
-            idGasto=small_id
             guardarGasto({
                 fecha: fecha,
-                id:idGasto,
+                id:uuid().slice(0,10),
                 nombre:nombre,
                 cantidad:cantidad,
                 categoria:categoria
             })
         }
-
-        
         setNombre('');
         setCantidad('')
         setCategoria('')

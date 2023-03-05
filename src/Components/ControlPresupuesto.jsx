@@ -13,7 +13,7 @@ function ControlPresupuesto({presupuesto,gastos}) {
     }
 
     useEffect(()=>{
-      const dineroGastado=gastos.reduce((total,gasto)=>gasto.cantidad+total,0)    
+      const dineroGastado=gastos.reduce((total,gasto)=>gasto.cantidad+total,0)
       const disponible=presupuesto-dineroGastado
       setGastado(dineroGastado)
       setDisponible(disponible)

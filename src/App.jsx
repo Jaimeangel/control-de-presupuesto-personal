@@ -37,6 +37,11 @@ function App() {
     setGastos(newGastos)
   }
 
+  const eliminarGasto=(idEliminar)=>{
+    const newGastos=gastos.filter(gastosState=>gastosState.id!=idEliminar)
+    setGastos(newGastos)
+  }
+
   return (
     <div>
       <Header
@@ -53,6 +58,7 @@ function App() {
             <ListadoGastos
               gastos={gastos}
               setGastoEditar={setGastoEditar}
+              eliminarGasto={eliminarGasto}
             />
           </main>
 
