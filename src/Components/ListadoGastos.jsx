@@ -1,6 +1,6 @@
 import Gasto from "./Gasto";
 
-function ListadoGastos({gastos}) {
+function ListadoGastos({gastos,setGastoEditar}) {
   return (
     <div className="listado-gastos contenedor">
 
@@ -9,6 +9,7 @@ function ListadoGastos({gastos}) {
             <Gasto
                 key={gasto.id}
                 gasto={gasto}
+                setGastoEditar={setGastoEditar}
             />
         ))}
     </div>

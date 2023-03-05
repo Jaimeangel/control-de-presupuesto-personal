@@ -1,20 +1,42 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import cerrarModal from '../img/cerrar.svg'
 import Mensaje from './Mensaje';
 
-function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
+function Modal({
+    setModal,
+    animarModal,
+    setAnimarModal,
+    guardarGasto,
+    gastoEditar,
+    setGastoEditar,
+    guardarGastoEditado
+}){
 
     const [nombre,setNombre]=useState('');
     const [cantidad,setCantidad]=useState('')
     const [categoria,setCategoria]=useState('')
     const [mensaje,setMensaje]=useState('')
+    const [idEditar,setIdEditar]=useState('')
+
+    useEffect(()=>{
+        if(Object.keys(gastoEditar).length){
+            setNombre(gastoEditar.nombre)
+            setCantidad(gastoEditar.cantidad)
+            setCategoria(gastoEditar.categoria)
+            setMensaje(gastoEditar.mensaje)
+            setIdEditar(gastoEditar.id)
+        }
+    },[])
 
     const closeModal=()=>{
         setAnimarModal(false)
         setTimeout(() => {
             setModal(false)
         }, 500);
+        if(Object.keys(gastoEditar).length){
+            setGastoEditar({})
+        }
     }
 
     const handleSubmit=(e)=>{
@@ -29,21 +51,36 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
             return
         }
 
+        let idGasto;
         const unique_id = uuid();
         const small_id = unique_id.slice(0,10)
         const fecha= Date.now()
 
-        guardarGasto({
-            fecha: fecha,
-            id:small_id,
-            nombre:nombre,
-            cantidad:cantidad,
-            categoria:categoria
-        })
+        if(idEditar){
+            idGasto=idEditar
+            guardarGastoEditado({
+                fecha: fecha,
+                id:idGasto,
+                nombre:nombre,
+                cantidad:cantidad,
+                categoria:categoria
+            })
+        }else{
+            idGasto=small_id
+            guardarGasto({
+                fecha: fecha,
+                id:idGasto,
+                nombre:nombre,
+                cantidad:cantidad,
+                categoria:categoria
+            })
+        }
+
         
         setNombre('');
         setCantidad('')
         setCategoria('')
+        setIdEditar('')
         closeModal()
     }
 
@@ -60,7 +97,7 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
                 onSubmit={handleSubmit} 
                 className={`formulario ${animarModal &&'animar'}`}
             >
-                <legend>Ingresa un nuevo gasto</legend>
+                <legend>{gastoEditar.nombre?"Editar gasto":"Ingresa un nuevo gasto"}</legend>
                 {mensaje && <Mensaje tipo='error'>{mensaje}</Mensaje>}
 
                 <div className='campo'>
@@ -105,10 +142,12 @@ function Modal({setModal,animarModal,setAnimarModal,guardarGasto}) {
 
                 </div>
 
+                
                 <input
-                    value="Añadir gasto" 
+                    value={gastoEditar.nombre?"Guardar cambios":"Añadir gasto" }
                     type="submit" 
                 />
+                
             </form>
         </div>
     )
