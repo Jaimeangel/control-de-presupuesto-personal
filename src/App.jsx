@@ -7,11 +7,15 @@ import './index.css'
 
 
 function App() {
-  const [presupuesto,setPresupuesto]=useState('')
+  const [presupuesto,setPresupuesto]=useState(
+    Number(localStorage.getItem('presupuesto')) ?? 0
+  )
   const [isValidPresupuesto,setIsValidPresupuesto]=useState(false)
   const [modal,setModal]=useState(false)
   const [animarModal,setAnimarModal]=useState(false)
-  const [gastos,setGastos]=useState([])
+  const [gastos,setGastos]=useState(
+    localStorage.getItem('gastos') ? JSON.parse(localStorage.getItem('gastos')):[]
+  )
   const [gastoEditar,setGastoEditar]=useState({})
 
   useEffect(()=>{
@@ -41,6 +45,20 @@ function App() {
     const newGastos=gastos.filter(gastosState=>gastosState.id!=idEliminar)
     setGastos(newGastos)
   }
+
+  useEffect(()=>{
+    localStorage.setItem('presupuesto',presupuesto)
+  },[presupuesto])
+
+  useEffect(()=>{
+    if(Number(presupuesto)>0){
+      setIsValidPresupuesto(true)
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem('gastos',JSON.stringify(gastos) ?? [])
+  },[gastos])
 
   return (
     <div>
