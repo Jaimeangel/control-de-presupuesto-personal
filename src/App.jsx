@@ -3,6 +3,7 @@ import Header from './Components/Header'
 import iconoNuevoGasto from './img/nuevo-gasto.svg'
 import Modal from './Components/Modal'
 import ListadoGastos from './Components/ListadoGastos'
+import FilterGastos from './Components/FilterGastos'
 import './index.css'
 
 
@@ -17,6 +18,8 @@ function App() {
     localStorage.getItem('gastos') ? JSON.parse(localStorage.getItem('gastos')):[]
   )
   const [gastoEditar,setGastoEditar]=useState({})
+  const [filtro,setFiltro]=useState('')
+  const [gastosFiltrados,setGastosFiltrados]=useState([])
 
   useEffect(()=>{
     if(Object.keys(gastoEditar).length){
@@ -60,6 +63,14 @@ function App() {
     localStorage.setItem('gastos',JSON.stringify(gastos) ?? [])
   },[gastos])
 
+  useEffect(()=>{
+    if(filtro){
+      const gastosFiltrado=gastos.filter(gastosState=>gastosState.categoria===filtro)
+      console.log(gastosFiltrado)
+      setGastosFiltrados(gastosFiltrado)
+    }
+  },[filtro])
+
   return (
     <div>
       <Header
@@ -71,12 +82,17 @@ function App() {
       />
       {isValidPresupuesto && (
         <>
-
           <main>
+            <FilterGastos
+              filtro={filtro}
+              setFiltro={setFiltro}
+            />
             <ListadoGastos
               gastos={gastos}
               setGastoEditar={setGastoEditar}
               eliminarGasto={eliminarGasto}
+              filtro={filtro}
+              gastosFiltrado={gastosFiltrados}
             />
           </main>
 
