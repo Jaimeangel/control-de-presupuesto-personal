@@ -60,6 +60,7 @@ function ControlPresupuesto(
         />
       </div>
       <div className="contenido-presupuesto">
+        
         <button
           onClick={handleReset}
           className='reset-app'
@@ -67,6 +68,7 @@ function ControlPresupuesto(
         >
           RESETEAR APP
         </button>
+
         <p>
             <span>Presupuesto:</span>{formatearCantidad(presupuesto)}
         </p>
@@ -78,6 +80,7 @@ function ControlPresupuesto(
         <p>
             <span>Gastado:</span>{formatearCantidad(gastado)}
         </p>
+        
       </div>
     </div>
   )

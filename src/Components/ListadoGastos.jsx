@@ -1,6 +1,14 @@
 import Gasto from "./Gasto";
 
-function ListadoGastos({gastos,setGastoEditar,eliminarGasto,filtro,gastosFiltrado}) {
+function ListadoGastos(
+  {
+    gastos,
+    setGastoEditar,
+    eliminarGasto,
+    filtro,
+    gastosFiltrado
+  }
+  ) {
   return (
     <div className="listado-gastos contenedor">
         {

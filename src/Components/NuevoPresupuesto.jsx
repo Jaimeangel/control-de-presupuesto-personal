@@ -1,7 +1,13 @@
 import { useState } from "react";
 import Mensaje from "./Mensaje";
 
-function NuevoPresupuesto({presupuesto,setPresupuesto,setIsValidPresupuesto}) {
+function NuevoPresupuesto(
+  {
+    presupuesto,
+    setPresupuesto,
+    setIsValidPresupuesto
+  }
+  ) {
     const [mensaje,setMensaje]=useState('');
 
     const handlePresupuesto=(e)=>{

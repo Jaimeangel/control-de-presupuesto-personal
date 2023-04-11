@@ -27,9 +27,15 @@ const listIcons={
     Suscripciones:iconoSuscripciones,
 }
 
-function Gasto({gasto,setGastoEditar,eliminarGasto}) {
-    const {categoria,id,nombre,cantidad,fecha}=gasto;
-    const newDate=formatFecha(fecha)
+function Gasto(
+  {
+    gasto,
+    setGastoEditar,
+    eliminarGasto
+  }
+  ) {
+    const {categoria,id,nombre,cantidad,fecha} = gasto;
+    const newDate = formatFecha(fecha)
     
     const leadingActions = () => (
         <LeadingActions>

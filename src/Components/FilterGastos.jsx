@@ -1,6 +1,9 @@
-import { useState,useEffect } from "react"
-
-function FilterGastos({filtro,setFiltro}) {
+function FilterGastos(
+  {
+    filtro,
+    setFiltro
+  }
+  ) {
   return (
     <div className="filtros sombra contenedor">
         <form>

@@ -3,15 +3,17 @@ import { v4 as uuid } from 'uuid';
 import cerrarModal from '../img/cerrar.svg'
 import Mensaje from './Mensaje';
 
-function Modal({
-    setModal,
-    animarModal,
-    setAnimarModal,
-    guardarGasto,
-    gastoEditar,
-    setGastoEditar,
-    guardarGastoEditado
-}){
+function Modal(
+    {
+        setModal,
+        animarModal,
+        setAnimarModal,
+        guardarGasto,
+        gastoEditar,
+        setGastoEditar,
+        guardarGastoEditado
+    }
+){
 
     const [nombre,setNombre]=useState('');
     const [cantidad,setCantidad]=useState('')
@@ -77,6 +79,7 @@ function Modal({
 
     return (
         <div className="modal">
+
             <div className="cerrar-modal">
                 <img
                     src={cerrarModal}
@@ -84,6 +87,7 @@ function Modal({
                     onClick={closeModal}
                 />
             </div>
+
             <form
                 onSubmit={handleSubmit} 
                 className={`formulario ${animarModal &&'animar'}`}
@@ -140,6 +144,7 @@ function Modal({
                 />
                 
             </form>
+            
         </div>
     )
 }
